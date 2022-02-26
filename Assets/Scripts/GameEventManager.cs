@@ -13,12 +13,12 @@ public class GameEventManager : MonoBehaviour
 
     [SerializeField] private List<GameObject> eventObjects;
 
-    private float startTime;
     private Coroutine _nextEventCoroutine;
+    private float _startTime;
 
     private void Start()
     {
-        startTime = Time.realtimeSinceStartup;
+        _startTime = Time.realtimeSinceStartup;
     }
 
     private void Update()
@@ -26,7 +26,7 @@ public class GameEventManager : MonoBehaviour
         if (_nextEventCoroutine != null)
             return;
         
-        float timeToNextEvent = difficultyCurve.Evaluate((Time.realtimeSinceStartup - startTime) / timeToMaxDifficulty) * maxTimeBetweenEvents;
+        float timeToNextEvent = difficultyCurve.Evaluate((Time.realtimeSinceStartup - _startTime) / timeToMaxDifficulty) * maxTimeBetweenEvents;
 
         _nextEventCoroutine = StartCoroutine(StartEventAndWait(timeToNextEvent));
     }
