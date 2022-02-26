@@ -9,7 +9,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private string failSceneName;
     [SerializeField] private float failSceneTransitionDelay = 0.2f;
     [SerializeField] private List<Button> failButtons = new List<Button>();
-    
+
+    private void Awake()
+    {
+        // Ensure this object persists when loading new scene
+        DontDestroyOnLoad(gameObject);
+    }
+
     private void Start()
     {
         foreach (var button in failButtons)
@@ -35,7 +41,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void BeginFail()
     {
-        Debug.Log("You are already fail");
+        // This is where we should stop any music and stop timer because player already failed
     }
     
     /// <summary>
@@ -43,7 +49,6 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void Fail()
     {
-        Debug.Log("Nani?");
         StartCoroutine(GoToFailScene());
     }
 
@@ -51,5 +56,6 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(failSceneTransitionDelay);
         SceneManager.LoadScene(failSceneName);
+        failButtons.Clear();
     }
 }
