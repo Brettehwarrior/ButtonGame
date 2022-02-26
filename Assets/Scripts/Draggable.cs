@@ -35,7 +35,11 @@ namespace UnityTemplateProjects
                 Transform cachedTransform = transform;
                 cachedTransform.Translate((target - cachedTransform.position) / speed);
                 
-                // 
+                // Reset rigidbody if present
+                if (_rigidbody != null)
+                {
+                    _rigidbody.velocity = Vector3.zero;
+                }
             }
         }
 
