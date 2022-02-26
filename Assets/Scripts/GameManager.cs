@@ -10,12 +10,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float failSceneTransitionDelay = 0.2f;
     [SerializeField] private List<Button> failButtons = new List<Button>();
 
-    private void Awake()
-    {
-        // Ensure this object persists when loading new scene
-        DontDestroyOnLoad(gameObject);
-    }
-
     private void Start()
     {
         foreach (var button in failButtons)
