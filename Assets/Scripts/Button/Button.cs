@@ -4,7 +4,8 @@ using UnityEngine.Events;
 
 public class Button : MonoBehaviour
 {
-    public UnityEvent ButtonPressEvent { private set; get; }
+    public UnityEvent buttonPressEvent = new UnityEvent();
+    public UnityEvent buttonReleaseEvent = new UnityEvent();
     
     private ButtonMeshUpdater _meshUpdater;
     
@@ -17,25 +18,26 @@ public class Button : MonoBehaviour
 
     private PressState _state;
 
+    
+    
     private void Start()
     {
         _state = PressState.NotPressed;
         _meshUpdater = GetComponentInChildren<ButtonMeshUpdater>();
-        ButtonPressEvent = new UnityEvent();
     }
 
     private void Hold()
     {
         _state = PressState.Held;
         _meshUpdater.Hold();
+        buttonPressEvent.Invoke();
     }
 
     private void Trigger()
     {
         _state = PressState.Triggered;
         _meshUpdater.Release();
-        ButtonPressEvent.Invoke();
-        Debug.Log("You fool, the button has been pressed.");
+        buttonReleaseEvent.Invoke();
     }
     
     // TODO: Maybe make it press while dragging mouse across as well?
