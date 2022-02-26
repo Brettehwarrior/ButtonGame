@@ -5,9 +5,7 @@ namespace UnityTemplateProjects
 {
     public class Draggable : MonoBehaviour
     {
-        [SerializeField] private Camera _camera;
         [SerializeField] private float height = 0.2f;
-        [Range(0.01f, 5f)] [SerializeField] private float speed = 2f;
 
         private float _restHeight;
         private bool _dragging;
@@ -27,14 +25,13 @@ namespace UnityTemplateProjects
             {
                 Vector3 mouseVector = Input.mousePosition;
                 mouseVector.z = _restHeight;
-                Vector3 target = _camera.ScreenToWorldPoint(mouseVector);
+                Vector3 target = Camera.main.ScreenToWorldPoint(mouseVector);
                 target.y = _restHeight + height;
-                Debug.Log(target);
                 
-                // Move towards point
-                Transform cachedTransform = transform;
-                cachedTransform.Translate((target - cachedTransform.position) / speed);
-                
+                // Snap to point
+                transform.position = target;
+                transform.eulerAngles = Vector3.zero;
+
                 // Reset rigidbody if present
                 if (_rigidbody != null)
                 {

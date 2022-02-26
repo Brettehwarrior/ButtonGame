@@ -2,7 +2,6 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(ButtonMeshUpdater))]
 public class Button : MonoBehaviour
 {
     public UnityEvent ButtonPressEvent { private set; get; }
@@ -21,7 +20,7 @@ public class Button : MonoBehaviour
     private void Start()
     {
         _state = PressState.NotPressed;
-        _meshUpdater = GetComponent<ButtonMeshUpdater>();
+        _meshUpdater = GetComponentInChildren<ButtonMeshUpdater>();
         ButtonPressEvent = new UnityEvent();
     }
 
