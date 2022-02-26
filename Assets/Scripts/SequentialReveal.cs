@@ -2,17 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class TransitionHandler : MonoBehaviour
+public class SequentialReveal : MonoBehaviour
 {
     [System.Serializable]
-    private struct TransitionAction
+    private struct RevealAction
     {
         public GameObject gameObject;
         public float delay;
     }
     
-    [SerializeField] private List<TransitionAction> _startTransition;
+    [SerializeField] private List<RevealAction> _actions;
     private int _startTransitionIndex;
 
     private Coroutine _coroutine = null;
@@ -24,15 +25,21 @@ public class TransitionHandler : MonoBehaviour
     }
 
     private void Update()
-    {
-        if (_coroutine != null && _startTransitionIndex < _startTransition.Count)
+    {        
+        if (_coroutine != null)
             return;
-            
-        _coroutine = StartCoroutine(Reveal(_startTransition[_startTransitionIndex]));
+
+        if (_startTransitionIndex >= _actions.Count)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+        
+        _coroutine = StartCoroutine(Reveal(_actions[_startTransitionIndex]));
         _startTransitionIndex++;
     }
 
-    private IEnumerator Reveal(TransitionAction action)
+    private IEnumerator Reveal(RevealAction action)
     {
         if (action.gameObject != null)
         {
@@ -41,15 +48,6 @@ public class TransitionHandler : MonoBehaviour
         }
         
         yield return new WaitForSeconds(action.delay);
-
-        // Negative delay means hide everything
-        if (action.delay < 0)
-        {
-            while (_toHide.Count > 0)
-            {
-                _toHide.Dequeue().SetActive(false);
-            }
-        }
 
         _coroutine = null;
     }
