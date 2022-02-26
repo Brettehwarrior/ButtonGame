@@ -1,9 +1,12 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(ButtonMeshUpdater))]
 public class Button : MonoBehaviour
 {
+    public UnityEvent ButtonPressEvent { private set; get; }
+    
     private ButtonMeshUpdater _meshUpdater;
     
     private enum PressState
@@ -19,6 +22,7 @@ public class Button : MonoBehaviour
     {
         _state = PressState.NotPressed;
         _meshUpdater = GetComponent<ButtonMeshUpdater>();
+        ButtonPressEvent = new UnityEvent();
     }
 
     private void Hold()
@@ -29,8 +33,9 @@ public class Button : MonoBehaviour
 
     private void Trigger()
     {
-        _meshUpdater.Release();
         _state = PressState.Triggered;
+        _meshUpdater.Release();
+        ButtonPressEvent.Invoke();
         Debug.Log("You fool, the button has been pressed.");
     }
     
