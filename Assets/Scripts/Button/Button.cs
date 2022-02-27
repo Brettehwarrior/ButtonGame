@@ -9,33 +9,33 @@ public class Button : MonoBehaviour
     
     private ButtonMeshUpdater _meshUpdater;
     
-    private enum PressState
+    protected enum PressState
     {
         NotPressed, // Initial state
         Held,       // Button is held (doom)
         Triggered   // Button has been released (full press action)
     }
 
-    private PressState _state;
+    protected PressState state;
 
     
     
     private void Start()
     {
-        _state = PressState.NotPressed;
+        state = PressState.NotPressed;
         _meshUpdater = GetComponentInChildren<ButtonMeshUpdater>();
     }
 
     private void Hold()
     {
-        _state = PressState.Held;
+        state = PressState.Held;
         _meshUpdater.Hold();
         buttonPressEvent.Invoke();
     }
 
     private void Trigger()
     {
-        _state = PressState.Triggered;
+        state = PressState.Triggered;
         _meshUpdater.Release();
         buttonReleaseEvent.Invoke();
     }
@@ -48,7 +48,7 @@ public class Button : MonoBehaviour
 
     private void OnMouseExit()
     {
-        if (_state == PressState.Held)
+        if (state == PressState.Held)
         {
             Trigger();
         }
@@ -56,7 +56,7 @@ public class Button : MonoBehaviour
 
     private void OnMouseUpAsButton()
     {
-        if (_state == PressState.Held)
+        if (state == PressState.Held)
         {
             Trigger();
         }

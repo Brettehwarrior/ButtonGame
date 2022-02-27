@@ -2,38 +2,11 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(ButtonMeshUpdater))]
-public class FakeButton : MonoBehaviour
+public class FakeButton : Button
 {
-    public UnityEvent ButtonPressEvent { private set; get; }
-    
-    private ButtonMeshUpdater _meshUpdater;
-    
-    private enum PressState
-    {
-        NotPressed, // Initial state
-        Held,       // Button is held (doom)
-        Triggered   // Button has been released (full press action)
-    }
-
-    private PressState _state;
-
-    private void Start()
-    {
-        _state = PressState.NotPressed;
-        _meshUpdater = GetComponent<ButtonMeshUpdater>();
-        ButtonPressEvent = new UnityEvent();
-    }
-
-    private void Hold()
-    {
-        _state = PressState.Held;
-        _meshUpdater.Hold();
-    }
-
     private void Trigger()
     {
-        _state = PressState.Triggered;
+        state = PressState.Triggered;
         
         Debug.Log("Fake Button Pressed.");
         int goneCount = 0;
@@ -55,29 +28,6 @@ public class FakeButton : MonoBehaviour
                     break;
                 }
             }
-        }
-
-    }
-    
-    // TODO: Maybe make it press while dragging mouse across as well?
-    private void OnMouseDown()
-    {
-        Hold();
-    }
-
-    private void OnMouseExit()
-    {
-        if (_state == PressState.Held)
-        {
-            Trigger();
-        }
-    }
-
-    private void OnMouseUpAsButton()
-    {
-        if (_state == PressState.Held)
-        {
-            Trigger();
         }
     }
 }
