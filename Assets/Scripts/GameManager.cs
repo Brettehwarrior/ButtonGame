@@ -20,10 +20,15 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         SceneManager.sceneLoaded += (scene, _) =>
         {
-            if (scene.name == "StartScene")
-                Destroy(gameObject);
-            else if (scene.name == "FailScene")
-                GameObject.Find("Score").GetComponent<TextMeshProUGUI>().text += _timer.GetTimeString();
+            switch (scene.name)
+            {
+                case "StartScene":
+                    Destroy(gameObject);
+                    break;
+                case "FailScene":
+                    GameObject.Find("Score").GetComponent<TextMeshProUGUI>().text += _timer.GetTimeString();
+                    break;
+            }
         };
         
         _timer = GetComponent<Timer>();
