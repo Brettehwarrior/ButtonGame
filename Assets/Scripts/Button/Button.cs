@@ -27,6 +27,16 @@ public class Button : MonoBehaviour
         _meshUpdater = GetComponentInChildren<ButtonMeshUpdater>();
     }
 
+    private void Update()
+    {
+        if (transform.position.y < 0.1f)
+        {
+            // Trigger if fell on ground
+            Hold();
+            Trigger();
+        }
+    }
+
     private void Hold()
     {
         state = PressState.Held;

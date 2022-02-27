@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class NextSceneOnClick : MonoBehaviour
+public class ChangeSceneOnClick : MonoBehaviour
 {
+    [SerializeField] private string sceneName;
     private void Update()
     {
         if (Input.GetMouseButtonUp(0))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            SceneManager.LoadScene(sceneName);
         }
     }
 }
