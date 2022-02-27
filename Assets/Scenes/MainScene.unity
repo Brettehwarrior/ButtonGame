@@ -856,6 +856,7 @@ MonoBehaviour:
   eventObjects:
   - {fileID: 5343357754025142066, guid: 0931282f02fef374db8c24d6d96b4188, type: 3}
   - {fileID: 1925542320051881265, guid: b3bfe4721268936439acd6729aa5ea9a, type: 3}
+  - {fileID: 5329780337267308468, guid: 59cadecda7c16c84c87b49334e585e62, type: 3}
 --- !u!4 &1421105151
 Transform:
   m_ObjectHideFlags: 0
