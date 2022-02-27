@@ -586,7 +586,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 9, y: 11}
-  m_SizeDelta: {x: 249.6261, y: 224.9316}
+  m_SizeDelta: {x: 271.8851, y: 194.3281}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &821546950
 MonoBehaviour:
@@ -613,14 +613,14 @@ MonoBehaviour:
 
     Trent Baker
 
-    Daniel Kang
+    Soondae
 
-    Gobind
-    Singh
+    gps
 
-    Payton Norris
+    Eragon
 
-    Desk models by Adam Capone'
+    Mug/pen
+    models by Adam Capone'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a83bce234281fa942b8fa15e3b548b9d, type: 2}
   m_sharedMaterial: {fileID: -8100030019692398494, guid: a83bce234281fa942b8fa15e3b548b9d, type: 2}
@@ -647,15 +647,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 15.15
+  m_fontSizeBase: 15.15
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1307,10 +1307,10 @@ RectTransform:
   m_Father: {fileID: 362067258}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 104}
-  m_SizeDelta: {x: 701.2224, y: 134.3642}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -125.2}
+  m_SizeDelta: {x: 640, y: 237.7349}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1877146828
 MonoBehaviour:
@@ -1332,7 +1332,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: TEMPTATION
+  m_text: DON'T PRESS IT!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a83bce234281fa942b8fa15e3b548b9d, type: 2}
   m_sharedMaterial: {fileID: -8100030019692398494, guid: a83bce234281fa942b8fa15e3b548b9d, type: 2}
@@ -1359,8 +1359,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 120
-  m_fontSizeBase: 120
+  m_fontSize: 80
+  m_fontSizeBase: 80
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
