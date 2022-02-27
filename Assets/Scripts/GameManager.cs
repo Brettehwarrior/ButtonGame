@@ -5,13 +5,21 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
-{
+{    
     [SerializeField] private string failSceneName;
     [SerializeField] private float failSceneTransitionDelay = 0.2f;
     [SerializeField] private List<Button> failButtons = new List<Button>();
+    [SerializeField] private AudioClip mainMusic;
+    
+    private AudioSource _audioSource;
 
     private void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
+        _audioSource.clip = mainMusic;
+        _audioSource.loop = true;
+        _audioSource.Play();
+        
         foreach (var button in failButtons)
         {
             Subscribe(button);
@@ -35,7 +43,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void BeginFail()
     {
-        // This is where we should stop any music and stop timer because player already failed
+        _audioSource.Stop();
     }
     
     /// <summary>
