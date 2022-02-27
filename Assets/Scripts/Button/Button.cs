@@ -4,59 +4,80 @@ using UnityEngine.Events;
 
 public class Button : MonoBehaviour
 {
-    public UnityEvent ButtonPressEvent { private set; get; }
+    [SerializeField] private float speedTriggerThreshold = 0.2f;
+    
+    public UnityEvent buttonPressEvent = new UnityEvent();
+    public UnityEvent buttonReleaseEvent = new UnityEvent();
     
     private ButtonMeshUpdater _meshUpdater;
     
-    private enum PressState
+    protected enum PressState
     {
         NotPressed, // Initial state
         Held,       // Button is held (doom)
         Triggered   // Button has been released (full press action)
     }
 
-    private PressState _state;
+    protected PressState state;
+
 
     private void Start()
     {
-        _state = PressState.NotPressed;
+        state = PressState.NotPressed;
         _meshUpdater = GetComponentInChildren<ButtonMeshUpdater>();
-        ButtonPressEvent = new UnityEvent();
+    }
+
+    private void Update()
+    {
+        if (transform.position.y < 0.1f)
+        {
+            // Trigger if fell on ground
+            Hold();
+            Trigger();
+        }
     }
 
     private void Hold()
     {
-        _state = PressState.Held;
+        state = PressState.Held;
         _meshUpdater.Hold();
+        buttonPressEvent.Invoke();
     }
 
     private void Trigger()
     {
-        _state = PressState.Triggered;
+        if (state != PressState.Held)
+            return;
+
+        state = PressState.Triggered;
         _meshUpdater.Release();
-        ButtonPressEvent.Invoke();
-        Debug.Log("You fool, the button has been pressed.");
+        buttonReleaseEvent.Invoke();
     }
     
-    // TODO: Maybe make it press while dragging mouse across as well?
-    private void OnMouseDown()
+    private void OnMouseEnter()
     {
-        Hold();
+        if (Input.GetMouseButton(0))
+            Hold();
     }
 
     private void OnMouseExit()
     {
-        if (_state == PressState.Held)
-        {
-            Trigger();
-        }
+        Trigger();
     }
 
     private void OnMouseUpAsButton()
     {
-        if (_state == PressState.Held)
-        {
-            Trigger();
-        }
+        Trigger();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.relativeVelocity.magnitude > speedTriggerThreshold)
+            Hold();
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        Trigger();
     }
 }

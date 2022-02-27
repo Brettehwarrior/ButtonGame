@@ -71,6 +71,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db41d81fda7400848be8045bbba92141, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonPressEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  buttonReleaseEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!23 &6183654237932578851
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -219,7 +225,7 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
