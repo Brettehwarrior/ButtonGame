@@ -7,9 +7,11 @@ namespace UnityTemplateProjects
     {
         [SerializeField] private LayerMask _layerMask;
         [SerializeField] private float height = 0.15f;
+        [SerializeField] private float throwForceScale = 10f;
 
         private bool _dragging;
-        private Vector2 _mouseSpeed;
+        private Vector3 _prevTargetPos;
+        private Vector3 _motion;
 
         private Rigidbody _rigidbody;
 
@@ -42,6 +44,9 @@ namespace UnityTemplateProjects
                 {
                     _rigidbody.velocity = Vector3.zero;
                 }
+
+                _motion = target - _prevTargetPos;
+                _prevTargetPos = target;
             }
         }
 
@@ -53,6 +58,12 @@ namespace UnityTemplateProjects
         private void OnMouseUp()
         {
             _dragging = false;
+
+            if (_rigidbody != null)
+            {
+                Debug.Log(_motion);
+                _rigidbody.AddForce(_motion * throwForceScale, ForceMode.Impulse);
+            }
         }
     }
 }
