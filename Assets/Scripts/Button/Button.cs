@@ -4,6 +4,8 @@ using UnityEngine.Events;
 
 public class Button : MonoBehaviour
 {
+    [SerializeField] private float speedTriggerThreshold = 0.2f;
+    
     public UnityEvent buttonPressEvent = new UnityEvent();
     public UnityEvent buttonReleaseEvent = new UnityEvent();
     
@@ -18,8 +20,7 @@ public class Button : MonoBehaviour
 
     protected PressState state;
 
-    
-    
+
     private void Start()
     {
         state = PressState.NotPressed;
@@ -35,30 +36,38 @@ public class Button : MonoBehaviour
 
     private void Trigger()
     {
+        if (state != PressState.Held)
+            return;
+
         state = PressState.Triggered;
         _meshUpdater.Release();
         buttonReleaseEvent.Invoke();
     }
     
-    // TODO: Maybe make it press while dragging mouse across as well?
-    private void OnMouseDown()
+    private void OnMouseEnter()
     {
-        Hold();
+        if (Input.GetMouseButton(0))
+            Hold();
     }
 
     private void OnMouseExit()
     {
-        if (state == PressState.Held)
-        {
-            Trigger();
-        }
+        Trigger();
     }
 
     private void OnMouseUpAsButton()
     {
-        if (state == PressState.Held)
-        {
-            Trigger();
-        }
+        Trigger();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.relativeVelocity.magnitude > speedTriggerThreshold)
+            Hold();
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        Trigger();
     }
 }
