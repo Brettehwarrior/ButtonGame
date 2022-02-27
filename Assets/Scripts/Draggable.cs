@@ -9,6 +9,7 @@ namespace UnityTemplateProjects
         [SerializeField] private float height = 0.15f;
 
         private bool _dragging;
+        private Vector2 _mouseSpeed;
 
         private Rigidbody _rigidbody;
 
