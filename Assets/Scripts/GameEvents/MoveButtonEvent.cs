@@ -18,11 +18,11 @@ public class MoveButtonEvent : MonoBehaviour
         direction = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         foreach (var button in _buttons)
         {
-            button.GetComponent<Rigidbody>().AddForce(new Vector3(direction.x, 0.1f, direction.y) * force * Time.deltaTime, ForceMode.Impulse);
+            button.GetComponent<Rigidbody>().AddForce(new Vector3(direction.x, 0.1f, direction.y) * force, ForceMode.Impulse);
         }
     }
 
