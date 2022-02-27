@@ -18,18 +18,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
-        SceneManager.sceneLoaded += (scene, _) =>
-        {
-            switch (scene.name)
-            {
-                case "StartScene":
-                    Destroy(gameObject);
-                    break;
-                case "FailScene":
-                    GameObject.Find("Score").GetComponent<TextMeshProUGUI>().text += _timer.GetTimeString();
-                    break;
-            }
-        };
+        SceneManager.sceneLoaded += OnSceneSwitch;
         
         _timer = GetComponent<Timer>();
         _timer.StartTimer();
@@ -42,6 +31,20 @@ public class GameManager : MonoBehaviour
         foreach (var button in failButtons)
         {
             Subscribe(button);
+        }
+    }
+
+    private void OnSceneSwitch(Scene scene, LoadSceneMode _)
+    {
+        switch (scene.name)
+        {
+            case "StartScene":
+                Destroy(gameObject);
+                SceneManager.sceneLoaded -= OnSceneSwitch;
+                break;
+            case "FailScene":
+                GameObject.Find("Score").GetComponent<TextMeshProUGUI>().text += _timer.GetTimeString();
+                break;
         }
     }
 
