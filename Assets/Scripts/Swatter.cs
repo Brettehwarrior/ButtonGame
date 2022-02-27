@@ -5,38 +5,36 @@ using UnityEngine;
 
 public class Swatter : MonoBehaviour
 {
-    private bool following;
-
     /* code by MR. BAKER< I AM NOT A PRO > HE IS */
     [SerializeField] private LayerMask _layerMask;
-    [SerializeField] private float height = 0.1f;
-
-    private float _restHeight;
-    private bool _dragging;
+    [SerializeField] private float maxHeight = 0.6f;
+    [SerializeField] private float swatHeight = 0.2f;
+    
+    private float _height;
+    private bool _following;
 
     private Rigidbody _rigidbody;
 
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        _restHeight = transform.position.y; // Assumes spawning on table surface (probably not true)
-        _dragging = false;
+        _following = false;
     }
 
     void Update()
     {
-        if(following && Input.GetMouseButton(1))
+        if(_following && Input.GetMouseButton(1))
         {
-            height = -1;
+            _height = swatHeight;
         } else
         {
-            height = 0;
+            _height = maxHeight;
         }
     }
 
     private void FixedUpdate()
     {
-        if (following)
+        if (_following)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -45,7 +43,7 @@ public class Swatter : MonoBehaviour
 
             if (target != Vector3.zero)
             {
-                target.y = _restHeight + height;
+                target.y += _height;
 
                 // Snap to point
                 transform.position = target;
@@ -63,6 +61,6 @@ public class Swatter : MonoBehaviour
     /*Heres my puny code*/
     void OnMouseDown()
     {
-        following = !following;
+        _following = !_following;
     }
 }
