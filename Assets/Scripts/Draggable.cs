@@ -6,9 +6,8 @@ namespace UnityTemplateProjects
     public class Draggable : MonoBehaviour
     {
         [SerializeField] private LayerMask _layerMask;
-        [SerializeField] private float height = 0.1f;
+        [SerializeField] private float height = 0.15f;
 
-        private float _restHeight;
         private bool _dragging;
 
         private Rigidbody _rigidbody;
@@ -16,7 +15,6 @@ namespace UnityTemplateProjects
         private void Start()
         {
             _rigidbody = GetComponent<Rigidbody>();
-            _restHeight = transform.position.y; // Assumes spawning on table surface (probably not true)
             _dragging = false;
         }
 
@@ -31,7 +29,7 @@ namespace UnityTemplateProjects
                 
                 if (target != Vector3.zero)
                 {
-                    target.y = _restHeight + height;
+                    target.y += height;
                     
                     // Snap to point
                     transform.position = target;
