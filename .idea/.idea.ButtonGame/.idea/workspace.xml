@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="35a612bd-dbba-492b-9947-800b000296ad" name="Changes" comment="" />
+    <list default="true" id="35a612bd-dbba-492b-9947-800b000296ad" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ButtonGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ButtonGame/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/feature-ManyButtons.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/feature-ManyButtons.unity" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -67,6 +70,8 @@
       <workItem from="1645828527812" duration="3502000" />
       <workItem from="1645832192981" duration="237000" />
       <workItem from="1645832467501" duration="2062000" />
+      <workItem from="1645913461054" duration="7229000" />
+      <workItem from="1645930810136" duration="3124000" />
     </task>
     <servers />
   </component>
@@ -76,6 +81,17 @@
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
