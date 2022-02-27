@@ -51,8 +51,14 @@ public class FlyingObject : MonoBehaviour
     }
 
     void OnCollisionEnter(Collision col)
-    {
-        collisionOccured = true;
-        changeDirection();
+    {   
+        if(col.gameObject.name == "Swatter")
+        {
+            Destroy(gameObject);
+        } else
+        {
+            collisionOccured = true;
+            changeDirection();
+        }
     }
 }
