@@ -60,6 +60,11 @@ public class Button : MonoBehaviour
             Hold();
     }
 
+    private void OnMouseDown()
+    {
+        Hold();
+    }
+
     private void OnMouseExit()
     {
         Trigger();
