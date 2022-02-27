@@ -17,7 +17,7 @@ namespace UnityTemplateProjects
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (collision.relativeVelocity.magnitude > 0.2f)
+            if (collision.relativeVelocity.magnitude > 1.2f)
                 _audioSource.PlayOneShot(sound);
         }
     }

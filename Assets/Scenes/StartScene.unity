@@ -1332,7 +1332,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: GAME TITLE
+  m_text: TEMPTATION
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a83bce234281fa942b8fa15e3b548b9d, type: 2}
   m_sharedMaterial: {fileID: -8100030019692398494, guid: a83bce234281fa942b8fa15e3b548b9d, type: 2}

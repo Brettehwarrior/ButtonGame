@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5343357754025142068}
   - component: {fileID: 5343357754025142069}
   m_Layer: 0
-  m_Name: MugSpawner
+  m_Name: PenSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73d5d4458a3c4c6b8da709a89f6e3cbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toSpawn: {fileID: 8888004267079032072, guid: 2d930ed345cc2c3449ffff73b3cc1207, type: 3}
-  min: 1
-  max: 3
+  toSpawn: {fileID: 2966157062316946055, guid: 87a8180678cac414e9e13e3274381224, type: 3}
+  min: 2
+  max: 5
   randomRotation: 1
