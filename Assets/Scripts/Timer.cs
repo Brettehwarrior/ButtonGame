@@ -1,13 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
     private bool timerActive = false;
     private float currentTime;
-    public Text currentTimeText;
+    public TextMeshProUGUI currentTimeText;
     
     void Start()
     {
@@ -22,10 +23,12 @@ public class Timer : MonoBehaviour
 
         }
 
-        TimeSpan time = TimeSpan.FromSeconds(currentTime);
-        
-        currentTimeText.text = "You lasted " + time.ToString(@"mm\:ss") + ".";
+        currentTimeText.text = GetTimeString();
+    }
 
+    public string GetTimeString()
+    {
+        return TimeSpan.FromSeconds(currentTime).ToString(@"mm\:ss");
     }
 
     public void StartTimer()

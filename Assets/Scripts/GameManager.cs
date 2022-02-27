@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,9 +13,22 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioClip mainMusic;
     
     private AudioSource _audioSource;
+    private Timer _timer;
 
     private void Start()
     {
+        DontDestroyOnLoad(gameObject);
+        SceneManager.sceneLoaded += (scene, _) =>
+        {
+            if (scene.name == "StartScene")
+                Destroy(gameObject);
+            else if (scene.name == "FailScene")
+                GameObject.Find("Score").GetComponent<TextMeshProUGUI>().text += _timer.GetTimeString();
+        };
+        
+        _timer = GetComponent<Timer>();
+        _timer.StartTimer();
+        
         _audioSource = GetComponent<AudioSource>();
         _audioSource.clip = mainMusic;
         _audioSource.loop = true;
@@ -43,6 +57,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void BeginFail()
     {
+        _timer.StopTimer();
         _audioSource.Stop();
     }
     
@@ -60,4 +75,6 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(failSceneName);
         failButtons.Clear();
     }
+    
+    
 }
